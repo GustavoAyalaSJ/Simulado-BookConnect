@@ -1,0 +1,8 @@
+1. Página Principal (Introduced)
+2. Página Secundária (Dashboard)
+2.1 Filtros de Gênero (Funcionalidade)
+2.2 Cadastro de Leitura (Modal)
+2.2.1 Exibição de Leitura do Usuário (Modal)
+2.3 Curtidas e Comentários (Funcionalidade)
+2.4 Paginação (Funcionalidade)
+3. Perfil do Usuário (PerfilUser)
