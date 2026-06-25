@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Book Connect - Painel do usuário." />
     <title>BookConnect - Dashboard</title>
     <link rel="stylesheet" href="/css/style2.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
@@ -13,19 +14,21 @@
     <div class="background-container">
         <header class="cabeçalho">
             <div class="logotipo">
-                <img src="/assets/logotipo.png" alt="BCLogo">
+                <img src="/assets/logotipo.png" alt="BookConnect">
             </div>
-            <div class="search-container">
-                <input type="text" placeholder="Pesquisa">
-                <i class="bi bi-search"></i>
+
+            <div class="search-container" role="search">
+                <label class="sr-only" for="site-search">Pesquisa</label>
+                <input id="site-search" type="text" placeholder="Pesquisa" />
+                <i class="bi bi-search" aria-hidden="true"></i>
             </div>
 
             <div class="notification-container">
-                <button id="notification-button" class="icon-button">
-                    <i class="bi bi-bell"></i>
+                <button id="notification-button" class="icon-button" type="button" aria-haspopup="true" aria-expanded="false">
+                    <i class="bi bi-bell" aria-hidden="true"></i>
                 </button>
 
-                <div id="notification-dropdown" class="dropdown-content">
+                <div id="notification-dropdown" class="dropdown-content" aria-label="Notificações">
                     <label class="notificationLabel">Notificações</label>
 
                     <section class="notificationWarning">
@@ -38,37 +41,40 @@
                 </div>
             </div>
 
-            <a class="icon-button user-link">
-                <i class="bi bi-person-circle"></i>
+            <a class="icon-button user-link" href="#" aria-label="Perfil do usuário">
+                <i class="bi bi-person-circle" aria-hidden="true"></i>
             </a>
-            
         </header>
 
-        <div class="meta-info">
-            <h6 class="register-id">Cod_ID: <span id="codUnique-user">PLACEHOLDER</span></h6>
-        </div>
-
-        <h1 class="welcome-text">Seja bem-vindo, <span class="destacarUser" id="nome-logado">usuário</span>!</h1>
-
-        <div class="starter-post-container">
-            <input type="text" name="text" placeholder="Comece a sua publicação..." autocomplete="off">
-            <button class="post-button">Publicar</button>
-            <div class="icons-post-container">
-                <i class="bi bi-card-image"></i>
-                <i class="bi bi-file-earmark-play"></i>
-                <i class="bi bi-paperclip"></i>
+        <main>
+            <div class="meta-info">
+                <h6 class="register-id">Cod_ID: <span id="codUnique-user">PLACEHOLDER</span></h6>
             </div>
-            <div class="type-circle">
-                <!-- Um círculo oco que vai enchendo até o usuário bater o limite de quantidade de caracteres no post-->
-            </div>
-        </div>
 
-        <aside class="filter-container">
-            <!-- Busca de livros baseado em #tags -->
-        </aside>
-        <aside class="global-post-container">
-            <!-- O post tem que ser gerado através do full stack (back-end e front-end) -->
-        </aside>
+            <h1 class="welcome-text">Seja bem-vindo, <span class="destacarUser" id="nome-logado">usuário</span>!</h1>
+
+            <section class="starter-post-container" aria-label="Criar publicação">
+                <label class="sr-only" for="post-text">Conteúdo da publicação</label>
+                <input id="post-text" type="text" name="text" placeholder="Comece a sua publicação..." autocomplete="off" />
+                <button class="post-button" type="button">Publicar</button>
+                <div class="icons-post-container" aria-hidden="true">
+                    <i class="bi bi-card-image"></i>
+                    <i class="bi bi-file-earmark-play"></i>
+                    <i class="bi bi-paperclip"></i>
+                </div>
+                <div class="type-circle">
+                    <!-- Um círculo oco que vai enchendo até o usuário bater o limite de quantidade de caracteres no post-->
+                </div>
+            </section>
+
+            <section class="filter-container" aria-label="Filtros de livros">
+                <!-- Busca de livros baseado em #tags -->
+            </section>
+
+            <section class="global-post-container" aria-label="Posts">
+                <!-- O post tem que ser gerado através do full stack (back-end e front-end) -->
+            </section>
+        </main>
 
         <footer class="rodapé">
             <div class="footer-content">

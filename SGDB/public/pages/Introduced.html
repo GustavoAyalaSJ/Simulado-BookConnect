@@ -1,55 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookConnect</title>
-    <link rel="stylesheet" href="/css/style1.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/modal.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
-    <div class="background-container">
-        <header class="cabeçalho">
-            <div class="logotipo">
-                <img src="/assets/logotipo.png" alt="BCLogo">
+    <div class="app">
+        <header class="header">
+            <div class="logo">
+                <img src="assets/logotipo.png" alt="BookConnect">
             </div>
-            <div class="link-headers">
-                <div class="header1" id="btnOpenSuporteHeader">Sobre nós</div>
-                <div class="header2" id="btnOpenSuporteHeader">Suporte</div>
-            </div>
+
+            <nav class="nav" aria-label="Navegação principal">
+
+                <button id="btnOpenSobreHeader" class="nav-link" type="button">
+                    Sobre nós
+                </button>
+
+                <button id="btnOpenSuporteHeader" class="nav-link" type="button">
+                    Suporte
+                </button>
+
+            </nav>
+
         </header>
 
-        <main class="main-content">
-            <div class="left">
-                <div class="containerLeft">
-                    <section class="sobre-left">
-                        <h1 class="destacarGradient">Book Connect</h1>
-                        <h2>Explore seus gêneros literários favoritos de forma compartilhada.</h2>
-                        <p>PLACEHOLDER</p>
-                    </section>
-                    <button class="ButtonStyle" id="#">LOGAR</button>
+        <main class="hero">
+            <section class="hero-content">
+                <span class="hero-badge">Comunidade Literária</span>
+                <h1 id="bc-titulo">Book Connect</h1>
+                <h2>Explore seus gêneros literários favoritos de forma compartilhada.</h2>
+                <p>PLACEHOLDER</p>
+
+                <button id="open-login-modal" class="btn-primary" type="button">Entrar</button>
+            </section>
+
+            <section class="hero-showcase">
+                <div class="carousel-card">
+                    <div class="carousel-viewport" aria-live="polite">
+                        <div class="carousel-column" id="genre-carousel-column">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="right">
-                <aside class="carrousel-sample">
-                    <!-- Carrousel que gira automáticamente onde mostra livros baseado em gênero -->
-                </aside>
-                <aside class="filter-sample-button">
-                    <!-- Três botões que filtram gêneros para mudar o carrousel -->
-                </aside>
-            </div>
+
+                <div class="genre-filters" role="tablist" aria-label="Selecione o gênero">
+                    <button type="button" class="genre-filter-btn" data-genre="romance" aria-pressed="true">
+                        Romance
+                    </button>
+                    <button type="button" class="genre-filter-btn" data-genre="fantasy" aria-pressed="false">
+                        Fantasia
+                    </button>
+                    <button type="button" class="genre-filter-btn" data-genre="drama" aria-pressed="false">
+                        Drama
+                    </button>
+
+                </div>
+
+            </section>
+
         </main>
 
-        <footer class="rodapé">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <p>Book Connect © 2026 - Todos os direitos reservados <span class="separator-footer">|</span><p>Siga-nos: </p><i class="bi bi-instagram"></i><i class="bi bi-twitter-x"></i><i class="bi bi-tiktok"></i>
-                </div>
+        <div class="modal-backdrop" id="modal-backdrop" hidden aria-hidden="true">
+        </div>
+
+        <footer class="footer">
+            <div class="footer-left">
+                <p>Book Connect © 2026</p>
+                <span>Todos os direitos reservados</span>
             </div>
+
+            <div class="social-links" aria-label="Redes sociais">
+                <i class="bi bi-instagram"></i>
+                <i class="bi bi-twitter-x"></i>
+                <i class="bi bi-tiktok"></i>
+            </div>
+
         </footer>
+
     </div>
+
+    <script src="src/script1.js"></script>
 
 </body>
 
