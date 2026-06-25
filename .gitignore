@@ -29,3 +29,7 @@ Thumbs.db
 supabase/migrations/
 supabase/config.toml
 
+# Database (ignore SQL dumps/scripts)
+database/**/*.sql
+
+
