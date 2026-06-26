@@ -9,11 +9,11 @@
       </header>
 
       <form class="modal-body" id="login-form">
-        <label>E-mail
+        <label>E-mail:
           <input type="email" name="email" placeholder="Digite o seu email." autocomplete="email" required>
         </label>
 
-        <label>Senha
+        <label>Senha:
           <input type="password" name="password" placeholder="Digite a sua senha." autocomplete="current-password" required>
         </label>
 
@@ -86,12 +86,7 @@
       </header>
 
       <div class="modal-body">
-        <p>
-          O <strong>Book Connect</strong> é um espaço para leitores compartilharem experiências, descobrirem livros e se conectarem por gêneros.
-        </p>
-        <p>
-          Em breve: curtidas, comentários, perfil e integração com banco para login e registro.
-        </p>
+        <p><strong>Book Connect</strong> é uma plataforma para leitores compartilharem experiências, descobrirem novos tipos gênero e discutir sobre os assuntos em alta da comunidade literária.</p>
       </div>
     </div>
   </section>
@@ -107,12 +102,12 @@
 
       <div class="modal-body">
         <form id="formSuporte">
-            <label class="suporteLabel">Selecione o problema:</label>
+            <label class="selectLabel">Selecione o problema:</label>
             <div class="select-wrapper">
                 <select required>
                     <option value="" disabled selected>Selecione</option>
-                    <option>PLACEHOLDER.</option>
-                    <option>PLACEHOLDER.</option>
+                    <option>Não estou conseguindo criar uma conta na Plataforma.</option>
+                    <option>Não estou conseguindo realizar nenhuma postagem na minha conta.</option>
                     <option>PLACEHOLDER.</option>
                     <option>PLACEHOLDER.</option>
                     <option>PLACEHOLDER.</option>
@@ -215,8 +210,107 @@
     });
   }
 
+  function setupAuthNavigationAndValidation() {
+    const dashboardUrl = 'Dashboard.html';
+
+    function formatCPF(value) {
+      const digits = (value || '').replace(/\D/g, '').slice(0, 11);
+      const parts = [
+        digits.slice(0, 3),
+        digits.slice(3, 6),
+        digits.slice(6, 9),
+        digits.slice(9, 11)
+      ];
+      let out = parts[0];
+      if (parts[1]) out += '.' + parts[1];
+      if (parts[2]) out += '.' + parts[2];
+      if (parts[3]) out += '-' + parts[3];
+      return out;
+    }
+
+    function formatTelefone(value) {
+      const digits = (value || '').replace(/\D/g, '').slice(0, 11);
+      const ddd = digits.slice(0, 2);
+      const first = digits.slice(2, 7);
+      const last = digits.slice(7, 11);
+
+      if (!digits) return '';
+      let out = '(' + ddd;
+      if (ddd.length === 2) out += ')';
+      if (first) out += ' ' + first;
+      if (last) out += '-' + last;
+      return out;
+    }
+
+    function hasRepeatedSequence(cpfDigits, telDigits) {
+      const a = (cpfDigits || '').replace(/\D/g, '');
+      const b = (telDigits || '').replace(/\D/g, '');
+      if (a.length < 6 || b.length < 6) return false;
+
+      const minLen = 6;
+      const maxLen = Math.min(a.length, b.length);
+
+      for (let len = maxLen; len >= minLen; len--) {
+        for (let i = 0; i <= a.length - len; i++) {
+          const sub = a.slice(i, i + len);
+          if (sub && b.includes(sub)) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    }
+
+    const cpfInput = doc.getElementById('inputCPF');
+    const telefoneInput = doc.getElementById('inputTelefone');
+    const telefoneSuporteInput = doc.getElementById('inputTelefoneSuporte');
+
+    cpfInput?.addEventListener('input', (e) => {
+      const input = e.target;
+      const before = input.value;
+      const formatted = formatCPF(before);
+      if (formatted !== before) input.value = formatted;
+    });
+
+    function wireTelefoneMask(inputEl) {
+      if (!inputEl) return;
+      inputEl.addEventListener('input', (e) => {
+        const input = e.target;
+        const before = input.value;
+        const formatted = formatTelefone(before);
+        if (formatted !== before) input.value = formatted;
+      });
+    }
+
+    wireTelefoneMask(telefoneInput);
+    wireTelefoneMask(telefoneSuporteInput);
+
+    const registerForm = doc.getElementById('register-form');
+    registerForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const cpfDigits = (cpfInput?.value || '').replace(/\D/g, '');
+      const telDigits = (telefoneInput?.value || '').replace(/\D/g, '');
+
+      if (hasRepeatedSequence(cpfDigits, telDigits)) {
+        alert('CPF e Telefone não podem conter sequências repetidas em sequência.');
+        return;
+      }
+
+      window.location.href = dashboardUrl;
+    });
+
+    const loginForm = doc.getElementById('login-form');
+    loginForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      window.location.href = dashboardUrl;
+    });
+  }
+
   wireOpeners();
   wireClosers();
+  setupAuthNavigationAndValidation();
 
   const carouselColumn = doc.getElementById('genre-carousel-column');
   const filterButtons = Array.from(doc.querySelectorAll('.genre-filter-btn'));
@@ -231,6 +325,7 @@
   let rollTimer = null;
   let index = 0;
   let stepPx = 254;
+  const LIMIT = 3;
 
   function setAriaPressed(btn) {
     filterButtons.forEach((b) => {
@@ -249,7 +344,11 @@
     if (!carouselColumn) return;
     activeGenre = genre;
     index = 0;
-    carouselColumn.innerHTML = imageMap[genre]
+    const originalBooks = imageMap[genre].slice(0, LIMIT);
+    const extendedBooks = [...originalBooks, ...originalBooks];
+    carouselColumn.style.transition = 'transform 0.5s ease-in-out';
+
+    carouselColumn.innerHTML = extendedBooks
       .map((file) => {
         const alt = file.replace('.jpg', '').replaceAll('_', ' ');
         return `
@@ -278,10 +377,20 @@
   function startRoll() {
     stopRoll();
     rollTimer = setInterval(() => {
-      const cards = carouselColumn.querySelectorAll('.genre-book-card');
-      if (!cards.length) return;
-      index = (index + 1) % cards.length;
+      if (!carouselColumn) return;
+
+      index++;
+      carouselColumn.style.transition = 'transform 0.5s ease-in-out';
       carouselColumn.style.transform = `translateY(${-index * stepPx}px)`;
+      if (index >= LIMIT) {
+        setTimeout(() => {
+          index = 0;
+          if (carouselColumn) {
+            carouselColumn.style.transition = 'none';
+            carouselColumn.style.transform = 'translateY(0)';
+          }
+        }, 500);
+      }
     }, 1600);
   }
 
@@ -316,6 +425,7 @@
 
     window.addEventListener('resize', () => {
       measureStep();
+      carouselColumn.style.transition = 'none';
       carouselColumn.style.transform = `translateY(${-index * stepPx}px)`;
     });
   }

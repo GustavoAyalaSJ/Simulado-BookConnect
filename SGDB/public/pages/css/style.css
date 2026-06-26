@@ -22,6 +22,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 1px solid #ffc2903b;
   padding: 24px 8%;
 }
 
@@ -44,6 +45,11 @@ body {
   transition: .25s;
 }
 
+.nav-link:hover {
+  color: rgb(168, 123, 85);
+  transform: translateY(-2px);
+}
+
 .hero {
   flex: 1;
   display: grid;
@@ -62,8 +68,8 @@ body {
   margin-bottom: 20px;
   padding: 8px 14px;
   border-radius: 999px;
-  background: #eef2ff;
-  color: #4f46e5;
+  background: #ffe8db;
+  color: #c7825a;
   font-weight: 600;
 }
 
@@ -114,9 +120,17 @@ body {
   position: relative;
   background: white;
   border-radius: 24px;
-  padding: 25px;
+  padding: 18px;
+  margin-left: 110px;
+  max-width: 430px;
   box-shadow:
     0 15px 40px rgba(0, 0, 0, .08);
+}
+
+
+.carousel-title{
+  text-align: center;
+  color: rgba(0, 0, 0, 0.685);
 }
 
 .carousel-viewport {
@@ -157,8 +171,7 @@ body {
     0 15px 30px rgba(0, 0, 0, .15);
 }
 
-/* FILTROS */
-
+/* Filtros */
 .genre-filters {
   display: flex;
   gap: 12px;
@@ -173,23 +186,25 @@ body {
   cursor: pointer;
   font-weight: 700;
   box-shadow:
-    0 5px 20px rgba(0, 0, 0, .05);
+    0 5px 20px rgba(87, 54, 32, 0.05);
   transition: .25s;
 }
 
-.genre-filter-btn:hover {
-  transform: translateY(-2px);
+.genre-filter-btn[aria-pressed="true"] {
+  background: #e4986c;
+  color: white;
 }
 
-.genre-filter-btn[aria-pressed="true"] {
-  background: #4f46e5;
+.genre-filter-btn[aria-pressed="true"]:hover {
+  background: #ffb488;
   color: white;
+  transform: translateY(-2px);
 }
 
 /* Rodapé */
 .footer {
   padding: 24px 8%;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #ffc2903b;
   display: flex;
   justify-content: space-between;
   align-items: center;
