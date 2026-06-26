@@ -18,36 +18,38 @@ body {
 }
 
 /* Cabeçalho */
-.header {
+.cabeçalho {
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ffc2903b;
-  padding: 24px 8%;
+  padding: 12px 8%; 
 }
 
-.logo img {
-  height: 48px;
+.logotipo img {
+  height: 36px; 
+  display: block;
 }
 
 .nav {
   display: flex;
-  gap: 12px;
+  gap: 8px;
 }
 
 .nav-link {
   border: none;
   background: none;
   cursor: pointer;
-  padding: 10px 18px;
+  padding: 6px 14px; 
   border-radius: 999px;
   font-weight: 600;
+  font-size: 0.95rem;
   transition: .25s;
 }
 
 .nav-link:hover {
   color: rgb(168, 123, 85);
-  transform: translateY(-2px);
+  transform: translateY(-1px); 
 }
 
 .hero {
