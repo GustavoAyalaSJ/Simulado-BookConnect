@@ -6,6 +6,7 @@ const rateLimit = require('express-rate-limit');
 const cookieParser = require('cookie-parser');
 const csrf = require('csurf');
 const authRoutes = require('./routes/auth');
+const { requireAuth } = require('./middleware/auth');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -49,17 +50,17 @@ app.get('/csrf-token', csrfProtection, (req, res) => {
 
 app.use('/api/auth', loginLimiter, csrfProtection, authRoutes);
 
-app.get('/dashboard', (req, res) => {
-    res.json({ message: "Dados do Dashboard" });
+app.get('/dashboard', requireAuth, (req, res) => {
+    res.json({ message: "Dados do Dashboard", user: req.user });
 });
 
 app.get('/introduction', (req, res) => {
     res.json({ message: "Página de Introdução" });
 });
 
-app.get('/profile/:id', (req, res) => {
+app.get('/profile/:id', requireAuth, (req, res) => {
     const { id } = req.params;
-    res.json({ message: `Perfil do usuário com ID: ${id}` });
+    res.json({ message: `Perfil do usuário com ID: ${id}`, user: req.user });
 });
 
 

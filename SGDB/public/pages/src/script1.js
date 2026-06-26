@@ -286,8 +286,36 @@
     wireTelefoneMask(telefoneInput);
     wireTelefoneMask(telefoneSuporteInput);
 
-    const registerForm = doc.getElementById('register-form');
-    registerForm?.addEventListener('submit', (e) => {
+    const API_BASE = (window.location.origin || '').replace(/\/$/, '') + '/api';
+
+    function getCsrfTokenFromStorage() {
+      try {
+        return localStorage.getItem('csrfToken');
+      } catch {
+        return null;
+      }
+    }
+
+    async function postJson(url, payload) {
+      const headers = { 'Content-Type': 'application/json' };
+      const csrfToken = getCsrfTokenFromStorage();
+      if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+
+      const resp = await fetch(url, {
+        method: 'POST',
+        headers,
+        credentials: 'include',
+        body: JSON.stringify(payload)
+      });
+
+      const data = await resp.json().catch(() => ({}));
+      if (!resp.ok) {
+        throw new Error(data?.error || data?.message || 'Erro ao realizar requisição.');
+      }
+      return data;
+    }
+
+    registerForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const cpfDigits = (cpfInput?.value || '').replace(/\D/g, '');
@@ -298,13 +326,63 @@
         return;
       }
 
-      window.location.href = dashboardUrl;
+      const formData = new FormData(registerForm);
+      const nome_usuario = formData.get('nome_usuario');
+      const cpf = formData.get('cpf');
+      const email = formData.get('email');
+      const telefone = formData.get('telefone');
+      const senha = formData.get('senha');
+      const confirmar_senha = formData.get('confirmar_senha');
+
+      try {
+        const result = await postJson(`${API_BASE}/auth/register`, {
+          nome_usuario,
+          cpf,
+          email,
+          telefone,
+          senha,
+          confirmar_senha
+        });
+
+        if (result?.ok) {
+          const token = result?.token || '';
+          localStorage.setItem('token', token);
+          document.cookie = `token=${encodeURIComponent(token)}; path=/; SameSite=Lax`;
+          window.location.href = dashboardUrl;
+          return;
+        }
+
+        alert(result?.error || 'Falha no cadastro.');
+      } catch (err) {
+        alert(err?.message || 'Falha no cadastro.');
+      }
     });
 
-    const loginForm = doc.getElementById('login-form');
-    loginForm?.addEventListener('submit', (e) => {
+    loginForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
-      window.location.href = dashboardUrl;
+
+      const formData = new FormData(loginForm);
+      const email = formData.get('email');
+      const password = formData.get('password');
+
+      try {
+        const result = await postJson(`${API_BASE}/auth/login`, {
+          email,
+          password
+        });
+
+        if (result?.ok && result?.token) {
+          const token = result.token;
+          localStorage.setItem('token', token);
+          document.cookie = `token=${encodeURIComponent(token)}; path=/; SameSite=Lax`;
+          window.location.href = dashboardUrl;
+          return;
+        }
+
+        alert(result?.error || 'Falha no login.');
+      } catch (err) {
+        alert(err?.message || 'Falha no login.');
+      }
     });
   }
 
