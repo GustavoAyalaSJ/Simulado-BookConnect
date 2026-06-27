@@ -5,7 +5,7 @@
     <div class="modal-content">
       <header class="modal-header">
         <h2 id="login-title">Login</h2>
-        <button type="button" class="modal-close" data-close-modal aria-label="Fechar">×</button>
+        <button type="button" class="modal-close" data-close-modal>×</button>
       </header>
 
       <form class="modal-body" id="login-form">
@@ -37,7 +37,7 @@
     <div class="modal-content">
       <header class="modal-header">
         <h2 id="register-title">Cadastro</h2>
-        <button type="button" class="modal-close" data-close-modal aria-label="Fechar">×</button>
+        <button type="button" class="modal-close" data-close-modal>×</button>
       </header>
 
       <form class="modal-body" id="register-form">
@@ -82,7 +82,7 @@
     <div class="modal-content">
       <header class="modal-header">
         <h2 id="about-title">Sobre nós</h2>
-        <button type="button" class="modal-close" data-close-modal aria-label="Fechar">×</button>
+        <button type="button" class="modal-close" data-close-modal>×</button>
       </header>
 
       <div class="modal-body">
@@ -96,7 +96,7 @@
 <section class="modal" id="support-modal" role="dialog" aria-modal="true" aria-labelledby="support-title" hidden>
     <div class="modal-content">
       <header class="modal-header">
-        <button type="button" class="modal-close close-btn" data-close-modal aria-label="Fechar">X</button>
+        <button type="button" class="modal-close close-btn" data-close-modals>X</button>
         <h2 id="support-title">Suporte</h2>
       </header>
 
@@ -396,7 +396,7 @@
   const imageMap = {
     romance: ['hipotese_do_amor.jpg', 'orgulho_e_preconceito.jpg', 'adeline.jpg'],
     fantasy: ['harry_potter.jpg', 'incipit.jpg', 'corrupt.jpg'],
-    drama: ['bad_prince.jpg', 'corrupt.jpg', 'orgulho_e_preconceito.jpg']
+    ficcaocientifica: ['centro-terra.jpg', 'a-guerra-dos-mundos-hg-wells.jpg', 'codigo-da-vinci.jpg']
   };
 
   let activeGenre = 'romance';

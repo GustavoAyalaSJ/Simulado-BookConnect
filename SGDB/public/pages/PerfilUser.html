@@ -18,7 +18,7 @@
                 <img src="assets/logotipo.png" alt="BookConnect">
             </div>
 
-            <div class="settings-container" aria-label="Configurações">
+            <div class="settings-container" id="modal-config">
                 <i class="bi bi-gear-fill" aria-hidden="true"></i>
             </div>
 
@@ -46,19 +46,85 @@
             </a>
         </header>
 
-        <main>
+        <main class="main-content">
             <div class="meta-info">
                 <h6 class="register-id">Cod_ID: <span id="codUnique-user">PLACEHOLDER</span></h6>
             </div>
+
+            <section class="profile-summary-card">
+                <div class="profile-summary-row">
+                    <div class="profile-avatar">
+                        <i class="bi bi-person-circle"></i>
+                    </div>
+                    <div class="profile-summary-info">
+                        <h1 id="profile-name">PLACEHOLDER</h1>
+                        <p id="profile-nickname" class="profile-nickname">Crie um apelido.</p>
+                        <p class="profile-follow-stats"></p>
+                    </div>
+                    <div class="profile-summary-actions">
+                        <button id="btn-edit-profile" class="btn btn-edit" type="button">Editar Perfil</button>
+                        <button class="btn btn-follow" type="button">
+                            <i class="bi bi-person-plus" aria-hidden="true"></i>
+                            Seguir
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="profile-grid">
+                <div class="profile-left-column">
+                    <article class="card about-card">
+                        <div class="card-header">
+                            <h2>SOBRE</h2>
+                        </div>
+                        <div class="about-content collapsed" id="sobreContent">
+                            <!-- Através do modal de editar perfil, o usuário pode editar o sobre 
+                              e caso o sobre for muito grande aparece no final do texto 'Ler Mais' expandindo o sobre. -->
+                        </div>
+                    </article>
+            </aside>
+
+            <aside class="card favorites-card">
+                <div class="card-header">
+                    <h2>Livros Favoritos</h2>
+                </div>
+                <div class="favorite-books-list-wrapper">
+                    <ul class="favorite-books-list">
+                        <!-- Atráves de editar perfil, o usuário pode adicionar a quantidade de livros favoritos. -->
+                    </ul>
+                </div>
+            </aside>
+
+            <article class="card publications-card">
+                <div class="card-header">
+                    <h2>PUBLICAÇÕES</h2>
+                    <div class="select-wrapper">
+                        <select required>
+                            <option value="" disabled selected>Relevância</option>
+                            <option>Mais curtidos</option>
+                            <option>Mais comentados</option>
+                            <option>Mais vistos</option>
+                        </select>
+                        <i class="bi bi-chevron-down select-icon"></i>
+                    </div>
+                </div>
+                <div class="publications-body">
+                    <div class="default-message-empty">
+                        <i class="bi bi-emoji-frown-fill"></i>
+                        <h2 class="empty-warn">Parece que este usuário não publicou nada no momento</h2>
+                        <p class="empty-advice">Tente visualizar este perfil mais tarde.</p>
+                    </div>
+                    <div class="limit-page-viewer">
+                        <!-- Assim que passar de três posts na página, o último post será enviado para página 2 -->
+                    </div>
+                </div>
+            </article>
         </main>
 
         <footer class="rodapé">
             <div class="footer-content">
                 <div class="footer-section">
-                    <p>
-                        Book Connect © 2026 - Todos os direitos reservados <span class="separator-footer">|</span>
-                    </p>
-                    <p>Siga-nos:</p>
+                    <p>Book Connect © 2026 - Todos os direitos reservados</p>
                 </div>
             </div>
         </footer>

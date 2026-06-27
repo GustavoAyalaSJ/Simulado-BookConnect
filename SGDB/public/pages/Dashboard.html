@@ -43,7 +43,7 @@
                 </div>
             </div>
 
-            <a class="icon-button user-link" href="#" aria-label="Perfil do usuário">
+            <a class="icon-button user-link" href="#">
                 <i class="bi bi-person-circle" aria-hidden="true"></i>
             </a>
         </header>
@@ -55,7 +55,7 @@
 
             <h1 class="welcome-text">Seja bem-vindo, <span class="destacarUser" id="nome-logado">usuário</span>!</h1>
 
-            <section class="starter-post-container" aria-label="Criar publicação">
+            <section class="starter-post-container">
                 <label class="sr-only" for="post-text">Conteúdo da publicação</label>
                 <input id="post-text" type="text" name="text" placeholder="Comece sua publicação..."
                     autocomplete="off" />
@@ -83,6 +83,9 @@
 
             <section class="global-post-container">
                 <!-- O post tem que ser gerado através do full stack (back-end e front-end) -->
+                 <div class="limit-page-viewer">
+                    <!-- Assim que passar de cinco posts na página, o último post será enviado para página 2 -->
+                 </div>
             </section>
         </main>
 
