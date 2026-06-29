@@ -18,34 +18,36 @@
                 <img src="assets/logotipo.png" alt="BookConnect">
             </div>
 
-            <div class="search-container" role="search">
-                <label class="sr-only" for="site-search">Pesquisa</label>
-                <input id="site-search" type="text" placeholder="Pesquisa" />
-                <i class="bi bi-search" aria-hidden="true"></i>
-            </div>
+            <div class="header-actions">
+                <div class="search-container" role="search">
+                    <label class="sr-only" for="site-search">Pesquisa</label>
+                    <input id="site-search" type="text" placeholder="Pesquisa" />
+                    <i class="bi bi-search" aria-hidden="true"></i>
+                </div>
 
-            <div class="notification-container">
-                <button id="notification-button" class="icon-button" type="button" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="bi bi-bell" aria-hidden="true"></i>
-                </button>
+                <div class="notification-container">
+                    <button id="notification-button" class="icon-button" type="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                    </button>
 
-                <div id="notification-dropdown" class="dropdown-content" aria-label="Notificações">
-                    <label class="notificationLabel">Notificações</label>
+                    <div id="notification-dropdown" class="dropdown-content" aria-label="Notificações">
+                        <label class="notificationLabel">Notificações</label>
 
-                    <section class="notificationWarning">
-                        Você não possui nenhuma notificação no momento.
-                    </section>
+                        <section class="notificationWarning">
+                            Você não possui nenhuma notificação no momento.
+                        </section>
 
-                    <div class="notificationFooter">
-                        <p>Aviso: As notificações apagarão sozinhas no prazo de 30 dias.</p>
+                        <div class="notificationFooter">
+                            <p>Aviso: As notificações apagarão sozinhas no prazo de 30 dias.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <a class="icon-button user-link" href="#">
-                <i class="bi bi-person-circle" aria-hidden="true"></i>
-            </a>
+                <a class="icon-button user-link" href="#">
+                    <i class="bi bi-person-circle" aria-hidden="true"></i>
+                </a>
+            </div>
         </header>
 
         <main>
@@ -83,9 +85,9 @@
 
             <section class="global-post-container">
                 <!-- O post tem que ser gerado através do full stack (back-end e front-end) -->
-                 <div class="limit-page-viewer">
+                <div class="limit-page-viewer">
                     <!-- Assim que passar de cinco posts na página, o último post será enviado para página 2 -->
-                 </div>
+                </div>
             </section>
         </main>
 

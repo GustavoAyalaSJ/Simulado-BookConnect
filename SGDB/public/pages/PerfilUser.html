@@ -18,32 +18,34 @@
                 <img src="assets/logotipo.png" alt="BookConnect">
             </div>
 
-            <div class="settings-container" id="modal-config">
-                <i class="bi bi-gear-fill" aria-hidden="true"></i>
-            </div>
+            <div class="header-actions">
+                <div class="settings-container" id="modal-config">
+                    <i class="bi bi-gear-fill" aria-hidden="true"></i>
+                </div>
 
-            <div class="notification-container">
-                <button id="notification-button" class="icon-button" type="button" aria-haspopup="true"
-                    aria-expanded="false">
-                    <i class="bi bi-bell" aria-hidden="true"></i>
-                </button>
+                <div class="notification-container">
+                    <button id="notification-button" class="icon-button" type="button" aria-haspopup="true"
+                        aria-expanded="false">
+                        <i class="bi bi-bell" aria-hidden="true"></i>
+                    </button>
 
-                <div id="notification-dropdown" class="dropdown-content" aria-label="Notificações">
-                    <label class="notificationLabel">Notificações</label>
+                    <div id="notification-dropdown" class="dropdown-content" aria-label="Notificações">
+                        <label class="notificationLabel">Notificações</label>
 
-                    <section class="notificationWarning">
-                        Você não possui nenhuma notificação no momento.
-                    </section>
+                        <section class="notificationWarning">
+                            Você não possui nenhuma notificação no momento.
+                        </section>
 
-                    <div class="notificationFooter">
-                        <p>Aviso: As notificações apagarão sozinhas no prazo de 30 dias.</p>
+                        <div class="notificationFooter">
+                            <p>Aviso: As notificações apagarão sozinhas no prazo de 30 dias.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <a class="icon-button exit-link" href="#" aria-label="Sair">
-                <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
-            </a>
+                <a class="icon-button exit-link" href="Introduced.html" aria-label="Sair">
+                    <i class="bi bi-box-arrow-left" aria-hidden="true"></i>
+                </a>
+            </div>
         </header>
 
         <main class="main-content">
@@ -61,6 +63,13 @@
                         <p id="profile-nickname" class="profile-nickname">Crie um apelido.</p>
                         <p class="profile-follow-stats"></p>
                     </div>
+                    <div class="below-profile-avatar">
+                        <p>Total de Leituras registradas: <span id="count-view">PLACEHOLDER</span></p>
+                    </div>
+                    <section class="followers-section">
+                        <p>Seguidores: <span id="count-followers">PLACEHOLDER</span> | Seguindo: <span
+                                id="count-following">PLACEHOLDER</span></p>
+                    </section>
                     <div class="profile-summary-actions">
                         <button id="btn-edit-profile" class="btn btn-edit" type="button">Editar Perfil</button>
                         <button class="btn btn-follow" type="button">

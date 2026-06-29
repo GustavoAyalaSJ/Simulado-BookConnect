@@ -56,6 +56,12 @@ body {
     display: block;
 }
 
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
 .search-container {
     position: relative;
     width: 210px;

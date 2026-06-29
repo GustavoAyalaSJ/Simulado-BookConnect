@@ -96,7 +96,7 @@
 <section class="modal" id="support-modal" role="dialog" aria-modal="true" aria-labelledby="support-title" hidden>
     <div class="modal-content">
       <header class="modal-header">
-        <button type="button" class="modal-close close-btn" data-close-modals>X</button>
+        <button type="button" class="modal-close" data-close-modal>×</button>
         <h2 id="support-title">Suporte</h2>
       </header>
 
@@ -212,6 +212,9 @@
 
   function setupAuthNavigationAndValidation() {
     const dashboardUrl = 'Dashboard.html';
+
+    const registerForm = doc.getElementById('register-form');
+    const loginForm = doc.getElementById('login-form');
 
     function formatCPF(value) {
       const digits = (value || '').replace(/\D/g, '').slice(0, 11);
